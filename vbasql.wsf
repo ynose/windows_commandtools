@@ -1,0 +1,60 @@
+<job>
+<script language="vbscript" src="./vbasql_ExtractSQL.vbs"/>
+<script language="vbscript">
+
+Option Explicit
+
+Const LOGFILE = "vbasql.log"
+Const DEFAULT_KEYWORD = "Data Load"
+Const TEMPFILE = "vbasql.tmp"
+
+' OpenTextFile
+Const ForReading = 1    ' 読み取りモード
+Const ForWriting = 2    ' 上書きモード
+Const ForAppending = 8  ' 追記モード
+
+Const CSEEXE = "C:\Program Files\cse161\cse.exe"
+
+
+Dim objFileSys: Set objFileSys = CreateObject("Scripting.FileSystemObject")
+Dim objShell: Set objShell = WScript.CreateObject("Shell.Application")
+Dim objWScriptShell: Set objWScriptShell = WScript.CreateObject("WScript.Shell")
+
+Call Main
+
+Set objWScriptShell = Nothing
+Set objShell = Nothing
+Set objFileSys = Nothing
+
+' Main   ------------------------------------------------------------------------------------------
+Sub Main
+
+    ' パラメータチェック
+    Dim strKeyword
+    Dim objParm: Set objParm = Wscript.Arguments
+    'If objParm.Count > 0 Then
+    '    strKeyword = objParm(0)
+    'Else
+        strKeyword = DEFAULT_KEYWORD
+    'End If
+
+
+    ' 実行したディレクトリにあるログファイルを対象とする
+    Dim strFolderName
+    Dim strFullPath
+    If objParm.Count > 0 Then
+        strFullPath = objParm(0)
+    Else
+        EchoUsage "VBASQL file-path" 
+        WScript.Quit
+    End If
+
+
+    ' ログファイルが存在していたらSQLを抽出する
+    ' 存在していない場合は、空のログファイルが作成される
+    Call ExtractSQL(strFullPath, strKeyword)
+
+End Sub
+
+</script>
+</job>

@@ -1,0 +1,88 @@
+<job>
+
+<script language="vbscript">
+
+Option Explicit
+
+Call Main
+
+' Main   ------------------------------------------------------------------------------------------
+Sub Main
+
+    Dim objParm
+    Dim strFullPath
+    Dim strFolderName
+    Dim strFileName
+    Dim strTimeStamp
+    Dim objFileSys
+    Dim objShell
+    Dim objFolder
+    Dim objFile
+
+
+    ' パラメータチェック
+    Set objParm = Wscript.Arguments
+    If objParm.Count > 0 Then
+        strFileName = objParm(0)
+        If objParm.Count > 1 Then
+            strTimeStamp = objParm(1)
+        Else
+            strTimeStamp = Now()
+        End If
+    Else
+        EchoUsage "TOUCH file-name [""date time""]" 
+        WScript.Quit
+    End If
+
+
+    On Error Resume Next
+    Set objFileSys = CreateObject("Scripting.FileSystemObject")
+    Set objShell = WScript.CreateObject("Shell.Application")
+
+    strFolderName = objFileSys.GetParentFolderName(strFileName)
+    If strFolderName = "" Then
+        ' ファイル名のみ指定
+        strFolderName = objFileSys.GetAbsolutePathName(".\")
+    Else
+        ' フルパス指定(ドラッグ＆ドロップの場合も)
+        strFileName = objFileSys.GetFileName(strFileName)
+    End If
+
+    Set objFolder = objShell.NameSpace(strFolderName)
+    Set objFile = objFolder.ParseName(strFileName)
+    strFullPath = objFileSys.BuildPath(strFolderName, strFileName)
+
+    If objFileSys.FileExists(strFullPath) = True Then
+
+        Dim strOldTime: strOldTime = objFileSys.GetFile(strFullPath).DateLastModified
+
+        ' 更新日時を変更
+        objFile.ModifyDate = strTimeStamp  ' ファイルが読み取り専用でもタイムスタンプは変更される
+        If Err.Number <> 0 Then
+            WScript.Echo Err.Description
+        End If
+
+        Dim strNewTime: strNewTime = objFileSys.GetFile(strFullPath).DateLastModified
+
+
+        ' 結果表示
+        WScript.Echo strFullPath & vbCRLF & _
+                     "  " & strOldTime & vbCRLF & _
+                     "  " & strNewTime
+    Else
+        WScript.Echo "File not found"
+    End If
+
+    Set objFile = Nothing
+    Set objFolder = Nothing
+    Set objShell = Nothing
+    Set objFileSys = Nothing
+
+End Sub
+
+Sub EchoUsage(str)
+    WScript.echo "Usage: " & str
+End Sub
+
+</script>
+</job>

@@ -1,0 +1,30 @@
+■機能
+・VBAで最後に実行されたSQLをCSEに表示する。
+
+■インストール
+0. 予めcse.exeをインストールしておく。
+1. vbasql.wsfを好きなフォルダにコピーする。
+2. vbssql.DataLoad(ショートカット)を、実行するVBAと同じフォルダにコピーする。
+3. vbssql.DataLoadのプロパティを開き、リンク先のパスを1のvbasql.wsfを置いたパスに書き換える。
+   例）D:\tool\vbasql.wsf "Data Load"
+       ~~~~~~~
+
+■使い方
+・VBAを実行してvbasql.logが出力されたら、2のvbssql.DataLoad(ショートカット)を起動する。
+　自動的にCSEが立ち上がり、最後に実行されたSQLが表示される。
+　(vbasql.tmpが作成され、そのファイルがCSEに読み込まれている)
+・次のSQLを表示する前にはCSEを終了させておくこと。
+
+
+■SQLが表示されない場合
+3で設定したvbssql.DataLoad(ショートカット)のパスの後ろのキーワード"Data Load"を変更する。
+(このキーワードでvbasql.logを検索している)
+
+  例）Sales.xlsのvbasql.logの場合
+  2015/08/18 09:09:27	Sales.xls	Record Paste	2934	00:00:02	10	SELECT '','',A.REGION1,A.REGION1_NAME_E,A.REGION3,A.REGION3_NAME_E, SUM(A.SLSP_Y04), SUM(A.SLSM_Y04), SUM(A.SLSK_Y_K04), SUM(A.SLSK_Y04), SUM(A.SLSK_Y_Z04), '', '', '', SUM(A.SLSZ_Y04), '', '', SUM(A.SLSP_Y05), SUM(A.SLSM_Y05), SUM(A.SLSK_Y_K05), SUM(A.SLSK_Y05), SUM(A.SLSK_Y_Z05), '', '', '', SUM(A.SLSZ_Y05), '', '', SUM(A.SLSP_Y06), '', SUM(A.SLSM_Y06), SUM(A.SLSK_Y_K06), SUM(A.SLSK_Y06), SUM(A.SLSK_Y_Z06), '', '', '', '', SUM(A.SLSZ_Y06), '', '', SUM(A.SLSP_Y07), SUM(A.SLSR_Y07), SUM(A.SLSM_Y07), SUM(A.SLSK_Y_K07), SUM(A.SLSK_Y07), SUM(A.SLSK_Y_Z07), '', '', '', '', SUM(A.SLSZ_Y07), '', '', SUM(A.SLSP_Y08), SUM(A.SLSR_Y08), SUM(A.SLSM_Y08), SUM(A.SLSK_Y_K08), SUM(A.SLSK_Y08), SUM(A.SLSK_Y_Z08), '', '', '', '', SUM(A.SLSZ_Y08), '', '', SUM(A.SLSP_Y09), SUM(A.SLSR_Y09), SUM(A.SLSM_Y09), SUM(A.SLSK_Y_K09), SUM(A.SLSK_Y09), SUM(A.SLSK_Y_Z09), '', '', '', '', SUM(A.SLSZ_Y09), '', '', SUM(A.SLSP_Y10), SUM(A.SLSR_Y10), SUM(A.SLSM_Y10), SUM(A.SLSK_Y_K10), SUM(A.SLSK_Y10), SUM(A.SLSK_Y_Z10), '', '', '', '', SUM(A.SLSZ_Y10), '', '', SUM(A.SLSP_Y11), SUM(A.SLSR_Y11), SUM(A.SLSM_Y11), SUM(A.SLSK_Y_K11), SUM(A.SLSK_Y11), SUM(A.SLSK_Y_Z11), '', '', '', '', SUM(A.SLSZ_Y11), '', '', SUM(A.SLSP_Y12), SUM(A.SLSR_Y12), SUM(A.SLSM_Y12), SUM(A.SLSK_Y_K12), SUM(A.SLSK_Y12), SUM(A.SLSK_Y_Z12), '', '', '', '', SUM(A.SLSZ_Y12), '', '', SUM(A.SLSP_Y01), SUM(A.SLSR_Y01), SUM(A.SLSM_Y01), SUM(A.SLSK_Y_K01), SUM(A.SLSK_Y01), SUM(A.SLSK_Y_Z01), '', '', '', '', SUM(A.SLSZ_Y01), '', '', SUM(A.SLSP_Y02), SUM(A.SLSR_Y02), SUM(A.SLSM_Y02), SUM(A.SLSK_Y_K02), SUM(A.SLSK_Y02), SUM(A.SLSK_Y_Z02), '', '', '', '', SUM(A.SLSZ_Y02), '', '', SUM(A.SLSP_Y03), SUM(A.SLSR_Y03), SUM(A.SLSM_Y03), SUM(A.SLSK_Y_K03), SUM(A.SLSK_Y03), SUM(A.SLSK_Y_Z03), '', '', '', '', SUM(A.SLSZ_Y03), '', '', SUM(A.SLSP_YQ1), SUM(A.SLSK_Y_KQ1), SUM(A.SLSK_YQ1), SUM(A.SLSK_Y_ZQ1), '', '', SUM(A.SLSZ_YQ1), '', '', SUM(A.SLSP_YQ2), SUM(A.SLSK_Y_KQ2), SUM(A.SLSK_YQ2), SUM(A.SLSK_Y_ZQ2), '', '', SUM(A.SLSZ_YQ2), '', '', SUM(A.SLSP_YQ3), SUM(A.SLSK_Y_KQ3), SUM(A.SLSK_YQ3), SUM(A.SLSK_Y_ZQ3), '', '', SUM(A.SLSZ_YQ3), '', '', SUM(A.SLSP_YQ4), SUM(A.SLSK_Y_KQ4), SUM(A.SLSK_YQ4), SUM(A.SLSK_Y_ZQ4), '', '', SUM(A.SLSZ_YQ4), '', '', SUM(A.SLSP_YH1), SUM(A.SLSK_Y_KH1), SUM(A.SLSK_YH1), SUM(A.SLSK_Y_ZH1), '', '', SUM(A.SLSZ_YH1), '', '', SUM(A.SLSP_YH2), SUM(A.SLSK_Y_KH2), SUM(A.SLSK_YH2), SUM(A.SLSK_Y_ZH2), '', '', SUM(A.SLSZ_YH2), '', '', SUM(A.SLSP_YT), SUM(A.SLSK_Y_KT), SUM(A.SLSK_YT), SUM(A.SLSK_Y_ZT), '', '', SUM(A.SLSZ_YT), '', '', '' FROM GSLS_V120 A WHERE A.DISTY_TYPE IS NOT NULL AND ((A.CONS_FLAG = 'Y' and A.PLANT_SALES = '0') OR (A.CONS_FLAG = 'N' and A.PLANT_SALES = '0') OR (A.PLANT_SALES = '6') OR (A.PLANT_SALES = '7') OR (A.PLANT_SALES = '8' AND A.BGRP_CONS_FLAG = 'Y') OR (A.PLANT_SALES = '8' AND A.BGRP_CONS_FLAG = 'N')) AND A.SALES_LOCATION IN ('TEE') GROUP BY A.REGION1,A.REGION1_NAME_E,A.REGION3,A.REGION3_NAME_E  ORDER BY A.REGION1,A.REGION3 
+                     	         	~~~~~~~~~~~~
+  vbssql.DataLoadのリンク先を以下のように変更する。
+  D:\tool\vbasql.wsf "Record Paste"
+                      ~~~~~~~~~~~~
+
+以上。
